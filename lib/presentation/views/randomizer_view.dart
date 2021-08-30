@@ -1,6 +1,6 @@
-
 import 'package:bored_flutter_app/constant/key.dart';
 import 'package:bored_flutter_app/domain/store/randomizer/randomizer_store.dart';
+import 'package:bored_flutter_app/presentation/widgets/empty_random_screen_hint.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
@@ -27,18 +27,23 @@ class RandomizerView extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
               ),
-              Expanded(
-                  child: store.activity != null ?
-                  Center(
-                      child: Text(store.activity!.activity)
-                    )
-                      : Center(
-                    child: CircularProgressIndicator(),
-                  )
-              ),
-              ElevatedButton(
+              if (store.isLoading)
+                Expanded(child: Center(child: CircularProgressIndicator()))
+              else
+                Expanded(child: store.activity == null ?
+                  EmptyRandomScreenHint()
+                    : Center(child: Text(store.activity!.activity))
+                ),
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: FloatingActionButton(
                   onPressed: () => store.getRandomActivity(),
-                  child: Text("get")),
+                  child: Icon(
+                    Icons.add,
+                    color: Theme.of(context).primaryColor,
+                  ),
+                ),
+              ),
             ],
           ),
         );

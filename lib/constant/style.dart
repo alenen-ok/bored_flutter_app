@@ -8,7 +8,9 @@ class AppThemes {
     colorScheme: ColorScheme.light(
         brightness: Brightness.dark,
         primary: AppColors.purpleDark,
+        secondary: AppColors.purpleDark,
         onPrimary: AppColors.white),
+    shadowColor: AppColors.black.withOpacity(0.9),
     fontFamily: 'Montserrat',
     textTheme: TextTheme(
         bodyText2: TextStyle(fontSize: 12.0, color: AppColors.white), // default
@@ -23,8 +25,10 @@ class AppThemes {
       colorScheme: ColorScheme.light(
         brightness: Brightness.light,
         primary: AppColors.purpleLight,
+        secondary: AppColors.purpleLight,
         onPrimary: AppColors.white,
       ),
+      shadowColor: AppColors.black.withOpacity(0.12),
       fontFamily: 'Montserrat',
       textTheme: TextTheme(
         bodyText2: TextStyle(fontSize: 12.0, color: AppColors.black), // default

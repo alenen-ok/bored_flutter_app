@@ -8,9 +8,8 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({required this.darkMode, Key? key}) : super(key: key);
+  const HomeScreen({Key? key}) : super(key: key);
 
-  final bool darkMode;
   @override
   Widget build(BuildContext context) {
     return Consumer<DestinationsStore>(
@@ -19,13 +18,12 @@ class HomeScreen extends StatelessWidget {
           return SafeArea(
             top: false,
             child: Scaffold(
-              appBar: CustomAppBar(darkMode),
+              appBar: CustomAppBar(),
               body: PageContainer(store.selectedDestination),
               bottomNavigationBar: AnimatedTabBar(
                 key: const Key('bottomNavigationBar'),
                 onTap: (index) => store.selectDestination(index),
                 currentIndex: store.selectedDestinationIndex,
-                isSDarkMode: darkMode,
               ),
             ),
           );

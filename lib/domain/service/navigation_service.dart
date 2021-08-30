@@ -13,6 +13,9 @@ class NavigationService{
   // }
 
   Future<dynamic>? navigateTo(String _rn, {dynamic args}){
+
+    print("navigate To");
+    print(navigationKey.currentState.toString());
     return navigationKey.currentState?.pushNamed(_rn, arguments: args);
   }
 

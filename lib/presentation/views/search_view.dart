@@ -22,12 +22,14 @@ class SearchView extends StatelessWidget {
                 alignment: Alignment.topCenter,
                 margin: EdgeInsets.symmetric(vertical: 24.0),
                 child: Text(
-                  "Find activity by param",
+                  // "Find activity by param",
+                  "count: ${store.counter}",
                   style: Theme.of(context).textTheme.headline6,
                   textAlign: TextAlign.center,
                 ),
               ),
-              ElevatedButton(onPressed: () => store.navigateToDetails(), child: Text("details"))
+              ElevatedButton(onPressed: () => store.navigateToDetails(), child: Text("details")),
+              ElevatedButton(onPressed: () => store.incrementCounter(), child: Text("increment"))
             ],
           ),
         );

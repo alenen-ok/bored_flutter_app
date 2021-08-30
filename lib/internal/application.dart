@@ -38,13 +38,13 @@ class MyApp extends StatelessWidget {
           create: (_) => RandomizerStore(RepositoryModule.activityRepository()),
         ),
         Provider<SearchStore>(
-          create: (_) => SearchStore(NavigationModule.navigationService()),
+          create: (_) => SearchStore(),
         ),
         Provider<FavouritesStore>(
           create: (_) => FavouritesStore(),
         ),
         Provider<ActivityDetailsStore>(
-          create: (_) => ActivityDetailsStore(RepositoryModule.activityRepository(), NavigationModule.navigationService()),
+          create: (_) => ActivityDetailsStore(RepositoryModule.activityRepository()),
         ),
         Provider<PrefsRepository>(
           create: (_) => PrefsDataRepository(sharedPreferences),
@@ -58,11 +58,12 @@ class MyApp extends StatelessWidget {
         builder: (context, setStore, _) {
           return Observer(builder: (_) {
             return MaterialApp(
+              navigatorKey: NavigationModule.navigationService().navigationKey,
               debugShowCheckedModeBanner: false,
               theme: setStore.useDarkMode! ? AppThemes.darkTheme : AppThemes.lightTheme,
-              home: HomeScreen(darkMode: setStore.useDarkMode!,),
+              home: HomeScreen(),
               routes: {
-                "home_screen": (BuildContext context) => HomeScreen(darkMode: setStore.useDarkMode!,),
+                "home_screen": (BuildContext context) => HomeScreen(),
                 "activity_details_screen": (BuildContext context) => ActivityDetailsScreen(),
               },
             );

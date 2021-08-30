@@ -9,8 +9,34 @@ part of 'search_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$SearchStore on SearchStoreBase, Store {
+  final _$counterAtom = Atom(name: 'SearchStoreBase.counter');
+
+  @override
+  int get counter {
+    _$counterAtom.reportRead();
+    return super.counter;
+  }
+
+  @override
+  set counter(int value) {
+    _$counterAtom.reportWrite(value, super.counter, () {
+      super.counter = value;
+    });
+  }
+
   final _$SearchStoreBaseActionController =
       ActionController(name: 'SearchStoreBase');
+
+  @override
+  void incrementCounter() {
+    final _$actionInfo = _$SearchStoreBaseActionController.startAction(
+        name: 'SearchStoreBase.incrementCounter');
+    try {
+      return super.incrementCounter();
+    } finally {
+      _$SearchStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
 
   @override
   void navigateToDetails() {
@@ -26,7 +52,7 @@ mixin _$SearchStore on SearchStoreBase, Store {
   @override
   String toString() {
     return '''
-
+counter: ${counter}
     ''';
   }
 }
