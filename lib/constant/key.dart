@@ -6,4 +6,5 @@ class Keys {
   static const searchPageKey = Key('searchPage');
   static const favouritesPageKey = Key('favouritesPage');
   static const settingsPageKey = Key('settingsPage');
+  static const activityDetailsPageKey = Key('activityPage');
 }

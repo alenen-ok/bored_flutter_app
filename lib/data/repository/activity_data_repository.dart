@@ -14,4 +14,10 @@ class ActivityDataRepository extends ActivityRepository{
     final response = await _activityService.getRandomActivity();
     return response.toModel();
   }
+
+  @override
+  Future<Activity> getRandomActivityByParams() async {
+    final response = await _activityService.getRandomActivity();
+    return response.toModel();
+  }
 }

@@ -11,8 +11,10 @@ class AnimatedTabBar extends StatefulWidget {
     required Key key,
     required this.onTap,
     required this.currentIndex,
+    required this.isSDarkMode
   });
 
+  final bool isSDarkMode;
   final ValueChanged<int> onTap;
   final int currentIndex;
   @override
@@ -83,7 +85,8 @@ class _AnimatedTabBarState extends State<AnimatedTabBar>
           margin: EdgeInsets.only(top: 40),
           decoration: BoxDecoration(color: Theme.of(context).primaryColor, boxShadow: [
             BoxShadow(
-                color: Colors.black12, offset: Offset(0, -1), blurRadius: 8)
+                color: AppColors.black.withOpacity(widget.isSDarkMode ? 0.9 : 0.12),
+                offset: Offset(0, -1), blurRadius: 8)
           ]),
           child: Row(
             mainAxisSize: MainAxisSize.max,
@@ -160,7 +163,9 @@ class _AnimatedTabBarState extends State<AnimatedTabBar>
                                   decoration: BoxDecoration(
                                     color: Theme.of(context).primaryColor,
                                       shape: BoxShape.circle,
-                                      boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 8)])
+                                      boxShadow: [BoxShadow(
+                                          color: AppColors.black.withOpacity(widget.isSDarkMode ? 0.9 : 0.12),
+                                          blurRadius: 8)])
                               ),
                             ),
                           )),

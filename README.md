@@ -4,5 +4,5 @@ An application that will help you find something to do.
 
 ## Getting Started
 
-Icon made by [www.flaticon.com](https://www.flaticon.com/)"
+Icon made by [www.flaticon.com](https://www.flaticon.com/)
   

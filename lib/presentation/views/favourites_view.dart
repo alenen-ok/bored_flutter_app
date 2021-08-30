@@ -18,15 +18,13 @@ class FavouritesView extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 24.0),
           child: Column(
             children: [
-              SizedBox(
-                height: 24,
-                width: double.infinity,
-              ),
               Container(
-                margin: EdgeInsets.symmetric(vertical: 32),
+                alignment: Alignment.topCenter,
+                margin: EdgeInsets.symmetric(vertical: 24.0),
                 child: Text(
                   "Liked activities",
                   style: Theme.of(context).textTheme.headline6,
+                  textAlign: TextAlign.center,
                 ),
               ),
             ],

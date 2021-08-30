@@ -1,4 +1,5 @@
 
+import 'package:bored_flutter_app/constant/color.dart';
 import 'package:flutter/material.dart';
 
 class TabItem extends StatefulWidget {
@@ -59,6 +60,22 @@ class _TabItemState extends State<TabItem> {
           Container(
             height: double.infinity,
             width: double.infinity,
+            color: Colors.transparent,
+            child: AnimatedAlign(
+                duration: Duration(milliseconds: 400),
+                alignment: Alignment(0, 3),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 8.0),
+                  child: Container(
+                    width: double.infinity,
+                    color: AppColors.black,
+                    child: Text("temp", style: TextStyle(color: Colors.transparent),),
+                  ),
+                )),
+          ),
+          Container(
+            height: double.infinity,
+            width: double.infinity,
             child: AnimatedAlign(
               duration: Duration(milliseconds: 400),
               curve: Curves.easeIn,
@@ -82,7 +99,7 @@ class _TabItemState extends State<TabItem> {
                 ),
               ),
             ),
-          )
+          ),
         ],
       ),
     );
