@@ -1,13 +1,15 @@
 
 import 'package:bored_flutter_app/constant/key.dart';
-import 'package:bored_flutter_app/domain/store/details/activity_details_store.dart';
+import 'package:bored_flutter_app/domain/store/search/search_store.dart';
+import 'package:bored_flutter_app/presentation/widgets/activity_card.dart';
+import 'package:bored_flutter_app/presentation/widgets/icon_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
 class ActivityDetailsView extends StatelessWidget {
   const ActivityDetailsView(this.store, {required Key key}) : super(key: key);
 
-  final ActivityDetailsStore store;
+  final SearchStore store;
 
   @override
   Widget build(BuildContext context) {
@@ -15,12 +17,11 @@ class ActivityDetailsView extends StatelessWidget {
         builder: (context) {
           return Padding(
             key: Keys.activityDetailsPageKey,
-            padding: const EdgeInsets.symmetric(horizontal: 24.0),
+            padding: const EdgeInsets.all(24.0,),
             child: Column(
               children: [
                 Container(
                   alignment: Alignment.topCenter,
-                  margin: EdgeInsets.symmetric(vertical: 24),
                   child: Text(
                     "Your activity",
                     style: Theme.of(context).textTheme.headline6,
@@ -28,18 +29,28 @@ class ActivityDetailsView extends StatelessWidget {
                   ),
                 ),
                 Expanded(
-                    child: store.activity != null ?
-                    Center(
-                        child: Text(store.activity!.activity)
-                    )
-                        : Center(
-                      child: CircularProgressIndicator(),
-                    )
+                  child: Stack(
+                    fit: StackFit.expand,
+                    children: [
+                      if (store.isLoading)
+                        Center(child: CircularProgressIndicator()),
+                      ActivityAnimatedCard(store.activity, store.isLoading),
+                    ],
+                  ),
                 ),
-                ElevatedButton(
-                    onPressed: () => store.getRandomActivityByParams(),
-                    child: Text("get")),
-                ElevatedButton(onPressed: () => store.goBack(), child: Text("go back"))
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    SimpleIconButton(
+                        onTap: () => store.goBack(),
+                        icon: Icons.arrow_back_rounded
+                    ),
+                    SimpleIconButton(
+                      onTap: () => store.getRandomActivityByParams(),
+                      icon: Icons.refresh,
+                    ),
+                  ],
+                ),
               ],
             ),
           );

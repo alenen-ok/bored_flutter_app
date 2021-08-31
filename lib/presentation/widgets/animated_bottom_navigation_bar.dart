@@ -190,7 +190,7 @@ class _AnimatedTabBarState extends State<AnimatedTabBar>
                             opacity: fabIconAlpha,
                             child: Icon(
                               activeIcon,
-                              color: Theme.of(context).primaryColor,
+                              color: AppColors.white,
                               size: 16.0,
                             ),
                           ),

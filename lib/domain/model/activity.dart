@@ -1,5 +1,7 @@
 
 import 'package:bored_flutter_app/constant/enum.dart';
+import 'package:bored_flutter_app/data/mapper/activity_mapper.dart';
+import 'package:flutter/material.dart';
 
 class Activity {
   Activity({
@@ -19,4 +21,6 @@ class Activity {
   final double price;
   final String? link;
   final double accessibility;
+
+  Color get activityTypeColor => activityLightColorFromType(this.activityType);
 }

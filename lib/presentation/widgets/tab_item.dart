@@ -65,10 +65,10 @@ class _TabItemState extends State<TabItem> {
                 duration: Duration(milliseconds: 400),
                 alignment: Alignment(0, 3),
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 8.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 0.0, vertical: 8.0),
                   child: Container(
                     width: double.infinity,
-                    color: AppColors.black,
+                    color: Colors.black,
                     child: Text("temp", style: TextStyle(color: Colors.transparent),),
                   ),
                 )),

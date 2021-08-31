@@ -21,6 +21,7 @@ abstract class RandomizerStoreBase with Store {
   @action
   Future<void> getRandomActivity() async {
     isLoading = true;
+    await Future.delayed(const Duration(milliseconds: 600));
     final data = await _activityRepository.getRandomActivity();
     activity = data;
     isLoading = false;

@@ -1,8 +1,8 @@
-import 'package:bored_flutter_app/domain/store/details/activity_details_store.dart';
+
 import 'package:bored_flutter_app/domain/store/favourite/favourite_store.dart';
 import 'package:bored_flutter_app/domain/store/randomizer/randomizer_store.dart';
 import 'package:bored_flutter_app/domain/store/search/search_store.dart';
-import 'package:bored_flutter_app/presentation/views/details_view.dart';
+
 import 'package:bored_flutter_app/presentation/views/search_view.dart';
 import 'package:bored_flutter_app/presentation/views/favourites_view.dart';
 import 'package:bored_flutter_app/presentation/views/randomizer_view.dart';

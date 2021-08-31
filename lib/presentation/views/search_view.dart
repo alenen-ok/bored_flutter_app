@@ -1,6 +1,8 @@
 
 import 'package:bored_flutter_app/constant/key.dart';
+import 'package:bored_flutter_app/data/remote/model/activity_params.dart';
 import 'package:bored_flutter_app/domain/store/search/search_store.dart';
+import 'package:bored_flutter_app/presentation/widgets/icon_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
@@ -20,16 +22,24 @@ class SearchView extends StatelessWidget {
             children: [
               Container(
                 alignment: Alignment.topCenter,
-                margin: EdgeInsets.symmetric(vertical: 24.0),
+                margin: EdgeInsets.symmetric(vertical: 24),
                 child: Text(
-                  // "Find activity by param",
-                  "count: ${store.counter}",
+                  "Find activity by params",
                   style: Theme.of(context).textTheme.headline6,
                   textAlign: TextAlign.center,
                 ),
               ),
-              ElevatedButton(onPressed: () => store.navigateToDetails(), child: Text("details")),
-              ElevatedButton(onPressed: () => store.incrementCounter(), child: Text("increment"))
+              Padding(
+                padding: const EdgeInsets.all(24.0),
+                child: Text("There are no parameters yet, you will have absolutely random activity..."),
+              ),
+              SimpleIconButton(
+                  onTap: () {
+                    store.setParams();
+                    store.navigateToDetails();
+                  },
+                  icon: Icons.arrow_forward_rounded
+              ),
             ],
           ),
         );

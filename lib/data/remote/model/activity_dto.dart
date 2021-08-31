@@ -1,3 +1,4 @@
+
 class ActivityDto {
   ActivityDto.fromApi(Map<String, dynamic> map)
       : activity = map['activity'],

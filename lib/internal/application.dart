@@ -1,9 +1,8 @@
-import 'package:bored_flutter_app/constant/color.dart';
+
 import 'package:bored_flutter_app/constant/style.dart';
 import 'package:bored_flutter_app/data/repository/prefs_data_repository.dart';
 import 'package:bored_flutter_app/domain/repository/prefs_repository.dart';
 import 'package:bored_flutter_app/domain/store/destination/destinations_store.dart';
-import 'package:bored_flutter_app/domain/store/details/activity_details_store.dart';
 import 'package:bored_flutter_app/domain/store/favourite/favourite_store.dart';
 import 'package:bored_flutter_app/domain/store/randomizer/randomizer_store.dart';
 import 'package:bored_flutter_app/domain/store/search/search_store.dart';
@@ -12,9 +11,7 @@ import 'package:bored_flutter_app/internal/dependencies/navigation_module.dart';
 import 'package:bored_flutter_app/internal/dependencies/repository_module.dart';
 import 'package:bored_flutter_app/presentation/screens/activity_details_screen.dart';
 import 'package:bored_flutter_app/presentation/screens/home_screen.dart';
-import 'package:bored_flutter_app/presentation/widgets/animated_bottom_navigation_bar.dart';
-import 'package:bored_flutter_app/presentation/widgets/app_bar.dart';
-import 'package:bored_flutter_app/presentation/widgets/page_container.dart';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -38,13 +35,10 @@ class MyApp extends StatelessWidget {
           create: (_) => RandomizerStore(RepositoryModule.activityRepository()),
         ),
         Provider<SearchStore>(
-          create: (_) => SearchStore(),
+          create: (_) => SearchStore(RepositoryModule.activityRepository()),
         ),
         Provider<FavouritesStore>(
           create: (_) => FavouritesStore(),
-        ),
-        Provider<ActivityDetailsStore>(
-          create: (_) => ActivityDetailsStore(RepositoryModule.activityRepository()),
         ),
         Provider<PrefsRepository>(
           create: (_) => PrefsDataRepository(sharedPreferences),

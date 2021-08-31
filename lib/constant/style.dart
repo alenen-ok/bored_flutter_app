@@ -13,7 +13,7 @@ class AppThemes {
     shadowColor: AppColors.black.withOpacity(0.9),
     fontFamily: 'Montserrat',
     textTheme: TextTheme(
-        bodyText2: TextStyle(fontSize: 12.0, color: AppColors.white), // default
+        bodyText1: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w700),
         headline6: TextStyle(
             fontSize: 32.0,
             fontWeight: FontWeight.w700,
@@ -31,7 +31,7 @@ class AppThemes {
       shadowColor: AppColors.black.withOpacity(0.12),
       fontFamily: 'Montserrat',
       textTheme: TextTheme(
-        bodyText2: TextStyle(fontSize: 12.0, color: AppColors.black), // default
+        bodyText1: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w700),
         headline6: TextStyle(
             fontSize: 32.0,
             fontWeight: FontWeight.w700,
