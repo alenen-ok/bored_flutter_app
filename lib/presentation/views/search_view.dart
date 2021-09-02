@@ -1,15 +1,18 @@
 
+import 'package:bored_flutter_app/constant/enum.dart';
 import 'package:bored_flutter_app/constant/key.dart';
-import 'package:bored_flutter_app/data/remote/model/activity_params.dart';
+import 'package:bored_flutter_app/data/mapper/activity_mapper.dart';
 import 'package:bored_flutter_app/domain/store/search/search_store.dart';
+import 'package:bored_flutter_app/presentation/widgets/dropdown_list.dart';
 import 'package:bored_flutter_app/presentation/widgets/icon_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
 class SearchView extends StatelessWidget {
-  const SearchView(this.store, {required Key key}) : super(key: key);
+  SearchView(this.store, {required Key key}) : super(key: key);
 
   final SearchStore store;
+  CostType? priceParamValue;
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +34,11 @@ class SearchView extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.all(24.0),
-                child: Text("There are no parameters yet, you will have absolutely random activity..."),
+                child: DropDownList(
+                  value: stringFromCostType(priceParamValue),
+                  items: CostType.values.map((element){ return stringFromCostType(element)!;}).toList(),
+                  onItemSelect: (itemValue) => priceParamValue = costTypeFromString(itemValue),
+                ),
               ),
               SimpleIconButton(
                   onTap: () {

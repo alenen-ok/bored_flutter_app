@@ -75,24 +75,18 @@ mixin _$SearchStore on SearchStoreBase, Store {
 
   @override
   void setParams(
-      {String? type,
-      int? minParticipants,
-      int? maxParticipants,
-      double? minPrice,
-      double? maxPrice,
-      double? minAccessibility,
-      double? maxAccessibility}) {
+      {ActivityType? type,
+      GroupType? groupType,
+      CostType? costType,
+      AccessibilityType? accessibilityType}) {
     final _$actionInfo = _$SearchStoreBaseActionController.startAction(
         name: 'SearchStoreBase.setParams');
     try {
       return super.setParams(
           type: type,
-          minParticipants: minParticipants,
-          maxParticipants: maxParticipants,
-          minPrice: minPrice,
-          maxPrice: maxPrice,
-          minAccessibility: minAccessibility,
-          maxAccessibility: maxAccessibility);
+          groupType: groupType,
+          costType: costType,
+          accessibilityType: accessibilityType);
     } finally {
       _$SearchStoreBaseActionController.endAction(_$actionInfo);
     }

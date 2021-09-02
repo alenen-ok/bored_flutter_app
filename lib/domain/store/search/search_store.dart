@@ -1,5 +1,6 @@
 
-import 'package:bored_flutter_app/data/remote/model/activity_params.dart';
+import 'package:bored_flutter_app/constant/enum.dart';
+import 'package:bored_flutter_app/domain/model/activity_params.dart';
 import 'package:bored_flutter_app/domain/model/activity.dart';
 import 'package:bored_flutter_app/domain/repository/activity_repository.dart';
 import 'package:bored_flutter_app/domain/service/navigation_service.dart';
@@ -28,22 +29,17 @@ abstract class SearchStoreBase with Store {
 
   @action
   void setParams({
-    String? type,
-    int? minParticipants,
-    int? maxParticipants,
-    double? minPrice,
-    double? maxPrice,
-    double? minAccessibility,
-    double? maxAccessibility
+    ActivityType? type,
+    GroupType? groupType,
+    CostType? costType,
+    AccessibilityType? accessibilityType
   }) {
     final parameters = ActivityParameters(
         type: type,
-        minParticipants: minParticipants,
-        maxParticipants: maxParticipants,
-        minPrice: minPrice,
-        maxPrice: maxPrice,
-        minAccessibility: minAccessibility,
-        maxAccessibility: maxAccessibility);
+        participants: groupType,
+        price: costType,
+        accessibility: accessibilityType
+    );
     params = parameters;
     getRandomActivityByParams();
   }

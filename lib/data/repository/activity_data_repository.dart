@@ -1,7 +1,7 @@
 
-import 'package:bored_flutter_app/data/remote/model/activity_params.dart';
-import 'package:bored_flutter_app/data/remote/request/get_activity_body.dart';
-import 'package:bored_flutter_app/data/remote/service/activity_service.dart';
+import 'package:bored_flutter_app/domain/model/activity_params.dart';
+import 'package:bored_flutter_app/data/source/remote/request/get_activity_body.dart';
+import 'package:bored_flutter_app/data/source/remote/service/activity_service.dart';
 import 'package:bored_flutter_app/domain/model/activity.dart';
 import 'package:bored_flutter_app/domain/repository/activity_repository.dart';
 import 'package:bored_flutter_app/data/mapper/activity_mapper.dart';

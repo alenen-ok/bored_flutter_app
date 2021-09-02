@@ -1,6 +1,6 @@
 
-import 'package:bored_flutter_app/data/remote/model/activity_dto.dart';
-import 'package:bored_flutter_app/data/remote/request/get_activity_body.dart';
+import 'package:bored_flutter_app/data/source/remote/model/activity_dto.dart';
+import 'package:bored_flutter_app/data/source/remote/request/get_activity_body.dart';
 import 'package:dio/dio.dart';
 
 class ActivityService {
