@@ -2,7 +2,7 @@
 import 'package:bored_flutter_app/constant/enum.dart';
 import 'package:bored_flutter_app/domain/model/activity_params.dart';
 import 'package:bored_flutter_app/domain/model/activity.dart';
-import 'package:bored_flutter_app/domain/repository/activity_repository.dart';
+import 'package:bored_flutter_app/domain/repository/repository.dart';
 import 'package:bored_flutter_app/domain/service/navigation_service.dart';
 import 'package:bored_flutter_app/internal/dependencies/navigation_module.dart';
 import 'package:mobx/mobx.dart';
@@ -14,7 +14,7 @@ class SearchStore = SearchStoreBase with _$SearchStore;
 abstract class SearchStoreBase with Store {
   SearchStoreBase(this._activityRepository);
 
-  final ActivityRepository _activityRepository;
+  final Repository _activityRepository;
 
   final NavigationService _navigationService = NavigationModule.navigationService();
 

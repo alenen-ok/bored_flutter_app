@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'internal/application.dart';
+import 'internal/dependencies/locator.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -11,6 +12,7 @@ Future<void> main() async {
     statusBarBrightness: Brightness.dark
   ));
   final sharedPreferences = await SharedPreferences.getInstance();
-  runApp(MyApp(sharedPreferences));
+  await initializeDependencies(sharedPreferences);
+  runApp(MyApp());
 }
 

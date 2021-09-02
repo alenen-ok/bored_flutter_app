@@ -36,7 +36,6 @@ class RandomizerView extends StatelessWidget {
                     ),
                     Expanded(
                       child: Stack(
-                        fit: StackFit.expand,
                         children: [
                           if (store.isLoading)
                             Center(child: CircularProgressIndicator()),

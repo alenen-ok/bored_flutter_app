@@ -33,9 +33,9 @@ class DropDownListState extends State<DropDownList> {
       padding:
       EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       decoration: BoxDecoration(
-        boxShadow: [BoxShadow(color: Theme.of(context).colorScheme.primary.withOpacity(0.2),
+        boxShadow: [BoxShadow(color: Theme.of(context).colorScheme.primary.withOpacity(0.4),
             blurRadius: 15, spreadRadius: 0)],
-          color: Colors.white,
+          color: Theme.of(context).scaffoldBackgroundColor,
           borderRadius: BorderRadius.circular(50)),
       child: DropdownButton<String>(
           isExpanded: true,
@@ -55,7 +55,7 @@ class DropDownListState extends State<DropDownList> {
               value: value,
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Text(value),
+                child: Text(value, style: Theme.of(context).textTheme.subtitle2,),
               ),
             );
           }).toList()),

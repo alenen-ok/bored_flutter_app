@@ -1,7 +1,7 @@
 
 import 'package:bored_flutter_app/constant/enum.dart';
 import 'package:bored_flutter_app/constant/key.dart';
-import 'package:bored_flutter_app/data/mapper/activity_mapper.dart';
+import 'package:bored_flutter_app/data/mapper/params_mapper.dart';
 import 'package:bored_flutter_app/domain/store/search/search_store.dart';
 import 'package:bored_flutter_app/presentation/widgets/dropdown_list.dart';
 import 'package:bored_flutter_app/presentation/widgets/icon_button.dart';
@@ -42,7 +42,7 @@ class SearchView extends StatelessWidget {
               ),
               SimpleIconButton(
                   onTap: () {
-                    store.setParams();
+                    store.setParams(costType: priceParamValue);
                     store.navigateToDetails();
                   },
                   icon: Icons.arrow_forward_rounded

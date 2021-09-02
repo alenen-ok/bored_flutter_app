@@ -11,7 +11,7 @@ class GetRandomActivityWithParamsBody {
 
   Map<String, dynamic> toApi() {
     return {
-      if (params.type != null) 'type': stringFromActivityType(params.type!),
+      if (params.type != null) 'type': stringFromActivityType(params.type!).toLowerCase(),
       if (params.participants != null)
         'minparticipants': getMinParticipantsFromType(params.participants!),
       if (params.participants != null)

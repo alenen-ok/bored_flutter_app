@@ -20,6 +20,9 @@ class ActivityDetailsView extends StatelessWidget {
             padding: const EdgeInsets.all(24.0,),
             child: Column(
               children: [
+                SizedBox(
+                  height: 24.0,
+                ),
                 Container(
                   alignment: Alignment.topCenter,
                   child: Text(
@@ -38,18 +41,21 @@ class ActivityDetailsView extends StatelessWidget {
                     ],
                   ),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    SimpleIconButton(
-                        onTap: () => store.goBack(),
-                        icon: Icons.arrow_back_rounded
-                    ),
-                    SimpleIconButton(
-                      onTap: () => store.getRandomActivityByParams(),
-                      icon: Icons.refresh,
-                    ),
-                  ],
+                Padding(
+                  padding: const EdgeInsets.all(24.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      SimpleIconButton(
+                          onTap: () => store.goBack(),
+                          icon: Icons.arrow_back_rounded
+                      ),
+                      SimpleIconButton(
+                        onTap: () => store.getRandomActivityByParams(),
+                        icon: Icons.refresh,
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),

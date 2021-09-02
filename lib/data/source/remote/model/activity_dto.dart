@@ -10,7 +10,7 @@ class ActivityDto {
         link = map['link'];
 
   final String activity;
-  final  accessibility;
+  final double accessibility;
   final String type;
   final int participants;
   final double price;

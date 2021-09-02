@@ -1,6 +1,5 @@
+import 'package:bored_flutter_app/domain/repository/repository.dart';
 import 'package:mobx/mobx.dart';
-
-import 'package:bored_flutter_app/domain/repository/prefs_repository.dart';
 
 part 'settings_store.g.dart';
 
@@ -13,7 +12,7 @@ abstract class SettingsStoreBase with Store {
     useDarkMode = _prefsRepository.useDarkMode();
   }
 
-  PrefsRepository _prefsRepository;
+  final Repository _prefsRepository;
 
   @observable
   bool? useDarkMode;
