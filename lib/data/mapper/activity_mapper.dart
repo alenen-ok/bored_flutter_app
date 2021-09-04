@@ -1,7 +1,7 @@
 import 'package:bored_flutter_app/constant/color.dart';
 import 'package:bored_flutter_app/constant/enum.dart';
 import 'package:bored_flutter_app/data/mapper/params_mapper.dart';
-import 'package:bored_flutter_app/data/source/remote/model/activity_dto.dart';
+import 'package:bored_flutter_app/data/remote/model/activity_dto.dart';
 import 'package:bored_flutter_app/domain/model/activity.dart';
 import 'package:flutter/material.dart';
 

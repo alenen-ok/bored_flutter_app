@@ -12,13 +12,13 @@ mixin _$SearchStore on SearchStoreBase, Store {
   final _$paramsAtom = Atom(name: 'SearchStoreBase.params');
 
   @override
-  ActivityParameters? get params {
+  ActivityParameters get params {
     _$paramsAtom.reportRead();
     return super.params;
   }
 
   @override
-  set params(ActivityParameters? value) {
+  set params(ActivityParameters value) {
     _$paramsAtom.reportWrite(value, super.params, () {
       super.params = value;
     });
@@ -63,41 +63,15 @@ mixin _$SearchStore on SearchStoreBase, Store {
         .run(() => super.getRandomActivityByParams());
   }
 
-  final _$clearDataAsyncAction = AsyncAction('SearchStoreBase.clearData');
-
-  @override
-  Future<void> clearData() {
-    return _$clearDataAsyncAction.run(() => super.clearData());
-  }
-
   final _$SearchStoreBaseActionController =
       ActionController(name: 'SearchStoreBase');
 
   @override
-  void setParams(
-      {ActivityType? type,
-      GroupType? groupType,
-      CostType? costType,
-      AccessibilityType? accessibilityType}) {
+  void getActivityAndNavigateToDetails() {
     final _$actionInfo = _$SearchStoreBaseActionController.startAction(
-        name: 'SearchStoreBase.setParams');
+        name: 'SearchStoreBase.getActivityAndNavigateToDetails');
     try {
-      return super.setParams(
-          type: type,
-          groupType: groupType,
-          costType: costType,
-          accessibilityType: accessibilityType);
-    } finally {
-      _$SearchStoreBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  void navigateToDetails() {
-    final _$actionInfo = _$SearchStoreBaseActionController.startAction(
-        name: 'SearchStoreBase.navigateToDetails');
-    try {
-      return super.navigateToDetails();
+      return super.getActivityAndNavigateToDetails();
     } finally {
       _$SearchStoreBaseActionController.endAction(_$actionInfo);
     }

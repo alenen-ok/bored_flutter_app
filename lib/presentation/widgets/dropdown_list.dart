@@ -4,8 +4,11 @@ import 'package:flutter/material.dart';
 const String ANY_PARAM = "Any";
 
 class DropDownList extends StatefulWidget {
-  DropDownList({required this.value, required this.items,
-    required this.onItemSelect}) {
+  DropDownList({
+    required this.value,
+    required this.items,
+    required this.onItemSelect
+  }) {
     items.add(ANY_PARAM);
   }
 

@@ -20,9 +20,7 @@ class ActivityDetailsView extends StatelessWidget {
             padding: const EdgeInsets.all(24.0,),
             child: Column(
               children: [
-                SizedBox(
-                  height: 24.0,
-                ),
+
                 Container(
                   alignment: Alignment.topCenter,
                   child: Text(
@@ -30,6 +28,9 @@ class ActivityDetailsView extends StatelessWidget {
                     style: Theme.of(context).textTheme.headline6,
                     textAlign: TextAlign.center,
                   ),
+                ),
+                SizedBox(
+                  height: 24.0,
                 ),
                 Expanded(
                   child: Stack(
@@ -42,17 +43,35 @@ class ActivityDetailsView extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(24.0),
+                  padding: const EdgeInsets.only(left: 24.0, right: 24.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      SimpleIconButton(
-                          onTap: () => store.goBack(),
-                          icon: Icons.arrow_back_rounded
+                      Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          SimpleIconButton(
+                              onTap: () => store.goBack(),
+                              icon: Icons.arrow_back_rounded
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text("GO BACK"),
+                          )
+                        ],
                       ),
-                      SimpleIconButton(
-                        onTap: () => store.getRandomActivityByParams(),
-                        icon: Icons.refresh,
+                      Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          SimpleIconButton(
+                            onTap: store.isLoading ? null : () => store.getRandomActivityByParams(),
+                            icon: Icons.refresh,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text("REFRESH"),
+                          )
+                        ],
                       ),
                     ],
                   ),

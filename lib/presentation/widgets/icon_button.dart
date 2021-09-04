@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class SimpleIconButton extends StatelessWidget {
   const SimpleIconButton({required this.onTap, required this.icon});
 
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
   final IconData icon;
 
   @override

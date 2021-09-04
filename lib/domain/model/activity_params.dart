@@ -2,10 +2,10 @@
 import 'package:bored_flutter_app/constant/enum.dart';
 
 class ActivityParameters {
-  final ActivityType? type;
-  final CostType? price;
-  final GroupType? participants;
-  final AccessibilityType? accessibility;
+  ActivityType? type;
+  CostType? price;
+  GroupType? participants;
+  AccessibilityType? accessibility;
 
   ActivityParameters({
     this.type,

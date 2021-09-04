@@ -14,7 +14,7 @@ class ActivityAnimatedCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return AnimatedSwitcher(
       duration: Duration(milliseconds: 600),
-      child: activity != null && !isLoading?
+      child: activity != null && !isLoading ?
         ActivityCard(activity!)
             : SizedBox(),
     );
@@ -29,54 +29,59 @@ class ActivityCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: const EdgeInsets.all(24.0),
-        child: Container(
-          alignment: Alignment.center,
-          width: double.infinity,
-          height: double.infinity,
-          padding: const EdgeInsets.all(24.0),
-          decoration: BoxDecoration(
-            color: activity.activityTypeColor.withOpacity(0.3),
-            borderRadius: BorderRadius.all(Radius.circular(24)),
-            boxShadow: [
-              BoxShadow(
-                color: activity.activityTypeColor.withOpacity(0.2),
-                blurRadius: 15,
-                offset: Offset(0, 0), // Shadow position
-              ),
-            ],
-          ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(activity.activity, textAlign: TextAlign.center, style: Theme.of(context).textTheme.bodyText1,),
-              SizedBox(height: 16.0,),
-              Row(
-                children: [
-                  Text("Type:", style: Theme.of(context).textTheme.subtitle2,),
-                  Expanded(child: Text(stringFromActivityType(activity.activityType),
-                    textAlign: TextAlign.end, style: Theme.of(context).textTheme.subtitle1,)),
+        padding: const EdgeInsets.symmetric(horizontal: 24.0),
+        child: Stack(
+          children: [
+            Container(
+              margin: EdgeInsets.only(top: 24.0, bottom: 56.0),
+              alignment: Alignment.center,
+              width: double.infinity,
+              height: double.infinity,
+              padding: const EdgeInsets.all(24.0),
+              decoration: BoxDecoration(
+                color: activity.activityTypeColor.withOpacity(0.3),
+                borderRadius: BorderRadius.all(Radius.circular(24)),
+                boxShadow: [
+                  BoxShadow(
+                    color: activity.activityTypeColor.withOpacity(0.2),
+                    blurRadius: 15,
+                    offset: Offset(0, 0), // Shadow position
+                  ),
                 ],
               ),
-              SizedBox(height: 16.0,),
-              Row(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
                 children: [
-                  Text("Participants:", style: Theme.of(context).textTheme.subtitle2,),
-                  Expanded(child: Text(activity.participantsCount.toString(),
-                    textAlign: TextAlign.end, style: Theme.of(context).textTheme.subtitle1,)),
+                  Text(activity.activity, textAlign: TextAlign.center, style: Theme.of(context).textTheme.bodyText1,),
+                  SizedBox(height: 16.0,),
+                  Row(
+                    children: [
+                      Text("Type:", style: Theme.of(context).textTheme.subtitle2,),
+                      Expanded(child: Text(stringFromActivityType(activity.activityType),
+                        textAlign: TextAlign.end, style: Theme.of(context).textTheme.subtitle1,)),
+                    ],
+                  ),
+                  SizedBox(height: 16.0,),
+                  Row(
+                    children: [
+                      Text("Participants:", style: Theme.of(context).textTheme.subtitle2,),
+                      Expanded(child: Text(activity.participantsCount.toString(),
+                        textAlign: TextAlign.end, style: Theme.of(context).textTheme.subtitle1,)),
+                    ],
+                  ),
+                  SizedBox(height: 16.0,),
+                  Text("Price:", style: Theme.of(context).textTheme.subtitle2,),
+                  SizedBox(height: 16.0,),
+                  StarsIndicator(activity.price),
+                  SizedBox(height: 16.0,),
+                  Text("Accessibility:", style: Theme.of(context).textTheme.subtitle2,),
+                  SizedBox(height: 16.0,),
+                  StarsIndicator(activity.accessibility),
                 ],
               ),
-              SizedBox(height: 16.0,),
-              Text("Price:", style: Theme.of(context).textTheme.subtitle2,),
-              SizedBox(height: 16.0,),
-              StarsIndicator(activity.price),
-              SizedBox(height: 16.0,),
-              Text("Accessibility:", style: Theme.of(context).textTheme.subtitle2,),
-              SizedBox(height: 16.0,),
-              StarsIndicator(activity.accessibility),
-            ],
-          ),
-      ),
+      ), Align(child: IconButton(icon: Image.asset("assets/images/like.png"), onPressed: () {  },), alignment: Alignment(0, -1),)
+          ],
+        ),
     );
   }
   

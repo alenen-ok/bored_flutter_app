@@ -8,7 +8,9 @@ part 'randomizer_store.g.dart';
 class RandomizerStore = RandomizerStoreBase with _$RandomizerStore;
 
 abstract class RandomizerStoreBase with Store {
-  RandomizerStoreBase(this._activityRepository);
+  RandomizerStoreBase(this._activityRepository) {
+    print("RandomizerStoreBase constructor");
+  }
 
   final Repository _activityRepository;
 

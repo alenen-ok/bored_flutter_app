@@ -8,7 +8,7 @@ import 'empty_random_screen_hint.dart';
 class AddRefreshButton extends StatefulWidget {
   const AddRefreshButton({required this.onTap, required this.isActivated, Key? key}) : super(key: key);
 
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
   final bool isActivated;
 
   @override
@@ -36,7 +36,7 @@ class AddRefreshButtonState extends State<AddRefreshButton> {
             activated = true;
           });
         }
-        widget.onTap.call();
+        widget.onTap?.call();
       },
       child: Column(
         mainAxisSize: MainAxisSize.min,

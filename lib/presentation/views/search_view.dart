@@ -9,10 +9,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
 class SearchView extends StatelessWidget {
-  SearchView(this.store, {required Key key}) : super(key: key);
+  const SearchView(this.store, {required Key key}) : super(key: key);
 
   final SearchStore store;
-  CostType? priceParamValue;
 
   @override
   Widget build(BuildContext context) {
@@ -35,15 +34,14 @@ class SearchView extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(24.0),
                 child: DropDownList(
-                  value: stringFromCostType(priceParamValue),
-                  items: CostType.values.map((element){ return stringFromCostType(element)!;}).toList(),
-                  onItemSelect: (itemValue) => priceParamValue = costTypeFromString(itemValue),
+                  value: stringFromCostType(store.params.price),
+                  items: CostType.values.map((element) => stringFromCostType(element)!).toList(),
+                  onItemSelect: (itemValue) => store.setCostType(costTypeFromString(itemValue)),
                 ),
               ),
               SimpleIconButton(
                   onTap: () {
-                    store.setParams(costType: priceParamValue);
-                    store.navigateToDetails();
+                    store.getActivityAndNavigateToDetails();
                   },
                   icon: Icons.arrow_forward_rounded
               ),

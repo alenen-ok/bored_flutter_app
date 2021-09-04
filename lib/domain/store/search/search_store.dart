@@ -12,14 +12,16 @@ part 'search_store.g.dart';
 class SearchStore = SearchStoreBase with _$SearchStore;
 
 abstract class SearchStoreBase with Store {
-  SearchStoreBase(this._activityRepository);
+  SearchStoreBase(this._activityRepository) {
+    print("SearchStoreBase constructor");
+  }
 
   final Repository _activityRepository;
 
   final NavigationService _navigationService = NavigationModule.navigationService();
 
   @observable
-  ActivityParameters? params;
+  ActivityParameters params = ActivityParameters();
 
   @observable
   Activity? activity;
@@ -27,39 +29,34 @@ abstract class SearchStoreBase with Store {
   @observable
   bool isLoading = false;
 
-  @action
-  void setParams({
-    ActivityType? type,
-    GroupType? groupType,
-    CostType? costType,
-    AccessibilityType? accessibilityType
-  }) {
-    final parameters = ActivityParameters(
-        type: type,
-        participants: groupType,
-        price: costType,
-        accessibility: accessibilityType
-    );
-    params = parameters;
-    getRandomActivityByParams();
+  void setType(ActivityType? value) {
+    params.type = value;
+  }
+
+  void setCostType(CostType? value) {
+    params.price = value;
+  }
+
+  void setGroupType(GroupType? value) {
+    params.participants = value;
+  }
+
+  void setAccessibilityType(AccessibilityType? value) {
+    params.accessibility = value;
   }
 
   @action
   Future<void> getRandomActivityByParams() async {
     isLoading = true;
     await Future.delayed(const Duration(milliseconds: 600));
-    final data = await _activityRepository.getRandomActivityByParams(params ?? ActivityParameters());
+    final data = await _activityRepository.getRandomActivityByParams(params);
     activity = data;
     isLoading = false;
   }
 
   @action
-  Future<void> clearData() async {
-    activity = null;
-  }
-
-  @action
-  void navigateToDetails() {
+  void getActivityAndNavigateToDetails() {
+    getRandomActivityByParams();
     _navigationService.navigateTo("activity_details_screen");
   }
 
