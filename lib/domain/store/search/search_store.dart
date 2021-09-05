@@ -4,7 +4,7 @@ import 'package:bored_flutter_app/domain/model/activity_params.dart';
 import 'package:bored_flutter_app/domain/model/activity.dart';
 import 'package:bored_flutter_app/domain/repository/repository.dart';
 import 'package:bored_flutter_app/domain/service/navigation_service.dart';
-import 'package:bored_flutter_app/internal/dependencies/navigation_module.dart';
+import 'package:bored_flutter_app/internal/dependencies/locator.dart';
 import 'package:mobx/mobx.dart';
 
 part 'search_store.g.dart';
@@ -12,13 +12,10 @@ part 'search_store.g.dart';
 class SearchStore = SearchStoreBase with _$SearchStore;
 
 abstract class SearchStoreBase with Store {
-  SearchStoreBase(this._activityRepository) {
-    print("SearchStoreBase constructor");
-  }
-
+  SearchStoreBase(this._activityRepository);
   final Repository _activityRepository;
 
-  final NavigationService _navigationService = NavigationModule.navigationService();
+  final NavigationService _navigationService = injector<NavigationService>();
 
   @observable
   ActivityParameters params = ActivityParameters();
@@ -55,8 +52,19 @@ abstract class SearchStoreBase with Store {
   }
 
   @action
-  void getActivityAndNavigateToDetails() {
-    getRandomActivityByParams();
+  Future<void> onLikeActivity() async {
+    if (activity != null) {
+      if (activity!.isLiked) {
+        await _activityRepository.removeActivityFromLiked(activity!);
+      } else {
+        await _activityRepository.addActivityToLiked(activity!);
+      }
+    }
+    activity = activity?.copyWith(newIsLiked: !(activity?.isLiked ?? false));
+  }
+
+  @action
+  void navigateToDetails() {
     _navigationService.navigateTo("activity_details_screen");
   }
 

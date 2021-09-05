@@ -5,7 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
 class FavouritesView extends StatelessWidget {
-  const FavouritesView(this.store, {required Key key}) : super(key: key);
+  FavouritesView(this.store, {required Key key}) : super(key: key) {
+    store.getActivities();
+  }
 
   final FavouritesStore store;
 
@@ -27,6 +29,15 @@ class FavouritesView extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
               ),
+              if (store.isLoading)
+                Center(child: CircularProgressIndicator(),)
+              else
+                ListView.builder(shrinkWrap: true,
+                itemBuilder:
+                    (ctx, index) =>  Container(
+                      child: Text(store.likedActivities[index].activity),),
+                  itemCount: store.likedActivities.length,
+                )
             ],
           ),
         );

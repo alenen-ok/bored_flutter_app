@@ -11,6 +11,7 @@ class Activity {
     required this.accessibility,
     required this.price,
     required this.key,
+    required this.isLiked,
     this.link
   });
 
@@ -21,6 +22,24 @@ class Activity {
   final double price;
   final String? link;
   final double accessibility;
+  bool isLiked;
+
+  void setIsLiked(bool isLiked) {
+    this.isLiked = isLiked;
+  }
 
   Color get activityTypeColor => activityLightColorFromType(this.activityType);
+
+  Activity copyWith({bool? newIsLiked}) {
+    return Activity(
+      activity: activity,
+      activityType: activityType,
+      participantsCount: participantsCount,
+      accessibility: accessibility,
+      price: price,
+      link: link,
+      key: key,
+      isLiked: newIsLiked ?? false
+    );
+  }
 }

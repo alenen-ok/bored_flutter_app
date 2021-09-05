@@ -47,6 +47,22 @@ mixin _$RandomizerStore on RandomizerStoreBase, Store {
     return _$getRandomActivityAsyncAction.run(() => super.getRandomActivity());
   }
 
+  final _$onLikeActivityAsyncAction =
+      AsyncAction('RandomizerStoreBase.onLikeActivity');
+
+  @override
+  Future<void> onLikeActivity() {
+    return _$onLikeActivityAsyncAction.run(() => super.onLikeActivity());
+  }
+
+  final _$refreshActivityAsyncAction =
+      AsyncAction('RandomizerStoreBase.refreshActivity');
+
+  @override
+  Future<void> refreshActivity() {
+    return _$refreshActivityAsyncAction.run(() => super.refreshActivity());
+  }
+
   @override
   String toString() {
     return '''

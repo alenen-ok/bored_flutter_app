@@ -1,11 +1,11 @@
 
 import 'package:bored_flutter_app/constant/style.dart';
+import 'package:bored_flutter_app/domain/service/navigation_service.dart';
 import 'package:bored_flutter_app/domain/store/destination/destinations_store.dart';
 import 'package:bored_flutter_app/domain/store/favourite/favourite_store.dart';
 import 'package:bored_flutter_app/domain/store/randomizer/randomizer_store.dart';
 import 'package:bored_flutter_app/domain/store/search/search_store.dart';
 import 'package:bored_flutter_app/domain/store/settings/settings_store.dart';
-import 'package:bored_flutter_app/internal/dependencies/navigation_module.dart';
 import 'package:bored_flutter_app/presentation/screens/activity_details_screen.dart';
 import 'package:bored_flutter_app/presentation/screens/home_screen.dart';
 
@@ -44,7 +44,7 @@ class MyApp extends StatelessWidget {
         builder: (context, setStore, _) {
           return Observer(builder: (_) {
             return MaterialApp(
-              navigatorKey: NavigationModule.navigationService().navigationKey,
+              navigatorKey: injector<NavigationService>().navigationKey,
               debugShowCheckedModeBanner: false,
               theme: setStore.useDarkMode! ? AppThemes.darkTheme : AppThemes.lightTheme,
               home: HomeScreen(),

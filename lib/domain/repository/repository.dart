@@ -7,4 +7,8 @@ abstract class Repository {
   Future<Activity> getRandomActivityByParams(ActivityParameters parameters);
   setDarkMode(bool useDarkMode);
   bool useDarkMode();
+  Future<List<Activity>> getAllLikedActivities();
+  Future<Activity> refreshActivity(Activity activity);
+  Future<void> addActivityToLiked(Activity activity);
+  Future<void> removeActivityFromLiked(Activity activity);
 }

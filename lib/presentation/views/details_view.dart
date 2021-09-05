@@ -7,7 +7,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
 class ActivityDetailsView extends StatelessWidget {
-  const ActivityDetailsView(this.store, {required Key key}) : super(key: key);
+  ActivityDetailsView(this.store, {required Key key}) : super(key: key) {
+    store.getRandomActivityByParams();
+  }
 
   final SearchStore store;
 
@@ -38,12 +40,13 @@ class ActivityDetailsView extends StatelessWidget {
                     children: [
                       if (store.isLoading)
                         Center(child: CircularProgressIndicator()),
-                      ActivityAnimatedCard(store.activity, store.isLoading),
+                      ActivityAnimatedCard(activity: store.activity,
+                          isLoading: store.isLoading, onLike: store.onLikeActivity,),
                     ],
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(left: 24.0, right: 24.0),
+                  padding: const EdgeInsets.only(left: 24.0, right: 24.0, top: 24.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [

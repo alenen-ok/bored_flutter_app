@@ -41,7 +41,7 @@ class SearchView extends StatelessWidget {
               ),
               SimpleIconButton(
                   onTap: () {
-                    store.getActivityAndNavigateToDetails();
+                    store.navigateToDetails();
                   },
                   icon: Icons.arrow_forward_rounded
               ),

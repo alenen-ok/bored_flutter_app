@@ -6,7 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
 class RandomizerView extends StatelessWidget {
-  const RandomizerView(this.store, {required Key key}) : super(key: key);
+  RandomizerView(this.store, {required Key key}) : super(key: key) {
+    store.refreshActivity();
+  }
 
   final RandomizerStore store;
 
@@ -21,6 +23,7 @@ class RandomizerView extends StatelessWidget {
             fit: StackFit.expand,
             children: [
               Column(
+                mainAxisSize: MainAxisSize.min,
                 children: [
                   Container(
                     alignment: Alignment.topCenter,
@@ -38,9 +41,13 @@ class RandomizerView extends StatelessWidget {
                       children: [
                         if (store.isLoading)
                           Center(child: CircularProgressIndicator()),
-                        ActivityAnimatedCard(store.activity, store.isLoading),
+                        ActivityAnimatedCard(activity: store.activity,
+                            isLoading: store.isLoading, onLike: store.onLikeActivity,),
                       ],
                     ),
+                  ),
+                  SizedBox(
+                    height: 56.0,
                   )
                 ],
               ),

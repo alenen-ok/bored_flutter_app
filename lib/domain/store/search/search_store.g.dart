@@ -63,15 +63,23 @@ mixin _$SearchStore on SearchStoreBase, Store {
         .run(() => super.getRandomActivityByParams());
   }
 
+  final _$onLikeActivityAsyncAction =
+      AsyncAction('SearchStoreBase.onLikeActivity');
+
+  @override
+  Future<void> onLikeActivity() {
+    return _$onLikeActivityAsyncAction.run(() => super.onLikeActivity());
+  }
+
   final _$SearchStoreBaseActionController =
       ActionController(name: 'SearchStoreBase');
 
   @override
-  void getActivityAndNavigateToDetails() {
+  void navigateToDetails() {
     final _$actionInfo = _$SearchStoreBaseActionController.startAction(
-        name: 'SearchStoreBase.getActivityAndNavigateToDetails');
+        name: 'SearchStoreBase.navigateToDetails');
     try {
-      return super.getActivityAndNavigateToDetails();
+      return super.navigateToDetails();
     } finally {
       _$SearchStoreBaseActionController.endAction(_$actionInfo);
     }

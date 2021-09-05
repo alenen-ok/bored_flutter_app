@@ -28,4 +28,25 @@ abstract class RandomizerStoreBase with Store {
     activity = data;
     isLoading = false;
   }
+
+
+
+  @action
+  Future<void> onLikeActivity() async {
+    if (activity != null) {
+      if (activity!.isLiked) {
+        await _activityRepository.removeActivityFromLiked(activity!);
+      } else {
+        await _activityRepository.addActivityToLiked(activity!);
+      }
+    }
+    activity = activity?.copyWith(newIsLiked: !(activity?.isLiked ?? false));
+  }
+
+  @action
+  Future<void> refreshActivity() async {
+    if (activity != null) {
+      activity = await _activityRepository.refreshActivity(activity!);
+    }
+  }
 }
