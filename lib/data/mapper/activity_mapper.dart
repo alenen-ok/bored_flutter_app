@@ -35,7 +35,7 @@ extension ActivityDatabaseMapper on ActivityEntity {
 extension ActivityEntityMapper on Activity {
   ActivityEntity toEntity() => ActivityEntity(
     activity: activity,
-    activityType: stringFromActivityType(activityType),
+    activityType: activityType.toStringName(),
     participantsCount: participantsCount,
     accessibility: accessibility,
     price: price,

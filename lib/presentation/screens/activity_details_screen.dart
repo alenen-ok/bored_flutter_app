@@ -9,8 +9,7 @@ import 'package:provider/provider.dart';
 class ActivityDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Observer(builder: (_) {
-      return SafeArea(
+    return SafeArea(
         top: false,
         child: Scaffold(
           appBar: CustomAppBar(),
@@ -20,6 +19,5 @@ class ActivityDetailsScreen extends StatelessWidget {
           ),
         ),
       );
-    });
   }
 }

@@ -59,9 +59,9 @@ int getMinParticipantsFromType(GroupType activityType) {
     case GroupType.solo:
       return 1;
     case GroupType.small_company:
-      return 5;
+      return 2;
     case GroupType.big_company:
-      return 9;
+      return 5;
   }
 }
 
@@ -70,14 +70,13 @@ int getMaxParticipantsFromType(GroupType groupType) {
     case GroupType.solo:
       return 1;
     case GroupType.small_company:
-      return 8;
+      return 4;
     case GroupType.big_company:
       return 10;
   }
 }
 
-String? stringFromCostType(CostType? costType) {
-  if (costType == null) return null;
+String stringFromCostType(CostType costType) {
   switch(costType) {
     case CostType.free:
       return "Free";
@@ -90,8 +89,7 @@ String? stringFromCostType(CostType? costType) {
   }
 }
 
-CostType? costTypeFromString(String? costType) {
-  if (costType == null) return null;
+CostType? costTypeFromString(String costType) {
   switch(costType.toLowerCase()) {
     case "free":
       return CostType.free;
@@ -101,6 +99,58 @@ CostType? costTypeFromString(String? costType) {
       return CostType.medium;
     case "expensive":
       return CostType.expensive;
+    default:
+      return null;
+  }
+}
+
+String stringFromGroupType(GroupType groupType) {
+  switch(groupType) {
+    case GroupType.solo:
+      return "Solo";
+    case GroupType.small_company:
+      return "Small company";
+    case GroupType.big_company:
+      return "Big company";
+  }
+}
+
+GroupType? groupTypeFromString(String groupType) {
+  switch(groupType.toLowerCase()) {
+    case "solo":
+      return GroupType.solo;
+    case "small company":
+      return GroupType.small_company;
+    case "big company":
+      return GroupType.big_company;
+    default:
+      return null;
+  }
+}
+
+String stringFromAccessibilityType(AccessibilityType accessibilityType) {
+  switch(accessibilityType) {
+    case AccessibilityType.novice:
+      return "Novice";
+    case AccessibilityType.junior:
+      return "Junior";
+    case AccessibilityType.middle:
+      return "Middle";
+    case AccessibilityType.senior:
+      return "Senior";
+  }
+}
+
+AccessibilityType? accessibilityTypeFromString(String accessibilityType) {
+  switch(accessibilityType.toLowerCase()) {
+    case "novice":
+      return AccessibilityType.novice;
+    case "junior":
+      return AccessibilityType.junior;
+    case "middle":
+      return AccessibilityType.middle;
+    case "senior":
+      return AccessibilityType.senior;
     default:
       return null;
   }
@@ -154,6 +204,6 @@ double getMaxAccessibilityFromType(AccessibilityType accessibilityType) {
     case AccessibilityType.middle:
       return 0.7;
     case AccessibilityType.senior:
-      return 0.1;
+      return 1.0;
   }
 }

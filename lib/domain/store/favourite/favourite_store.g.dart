@@ -48,6 +48,15 @@ mixin _$FavouritesStore on FavouritesStoreBase, Store {
     return _$getActivitiesAsyncAction.run(() => super.getActivities());
   }
 
+  final _$removeActivityFromLikedAsyncAction =
+      AsyncAction('FavouritesStoreBase.removeActivityFromLiked');
+
+  @override
+  Future<void> removeActivityFromLiked(int index) {
+    return _$removeActivityFromLikedAsyncAction
+        .run(() => super.removeActivityFromLiked(index));
+  }
+
   @override
   String toString() {
     return '''

@@ -12,9 +12,9 @@ class DropDownList extends StatefulWidget {
     items.add(ANY_PARAM);
   }
 
-  final String? value;
+  final String value;
   final List<String> items;
-  final ValueChanged<String?> onItemSelect;
+  final ValueChanged<String> onItemSelect;
   @override
   State<StatefulWidget> createState() => DropDownListState();
 
@@ -22,7 +22,7 @@ class DropDownList extends StatefulWidget {
 
 class DropDownListState extends State<DropDownList> {
 
-  String? dropdownValue;
+  late String dropdownValue;
 
   @override
   void initState() {
@@ -42,15 +42,17 @@ class DropDownListState extends State<DropDownList> {
           borderRadius: BorderRadius.circular(50)),
       child: DropdownButton<String>(
           isExpanded: true,
-          value: dropdownValue ?? ANY_PARAM,
+          value: dropdownValue,
           icon: Icon(Icons.arrow_drop_down),
           iconSize: 42,
           underline: SizedBox(),
           onChanged: (String? newValue) {
-            setState(() {
-              dropdownValue = newValue;
-            });
-            widget.onItemSelect(dropdownValue);
+            if (newValue != null) {
+              setState(() {
+                dropdownValue = newValue;
+              });
+              widget.onItemSelect(dropdownValue);
+            }
           },
           elevation: 2,
           items: widget.items.map<DropdownMenuItem<String>>((String value) {

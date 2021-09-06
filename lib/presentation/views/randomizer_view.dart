@@ -20,10 +20,10 @@ class RandomizerView extends StatelessWidget {
           key: Keys.randomizerPageKey,
           padding: const EdgeInsets.symmetric(horizontal: 24.0),
           child: Stack(
-            fit: StackFit.expand,
+            //fit: StackFit.expand,
             children: [
               Column(
-                mainAxisSize: MainAxisSize.min,
+                //mainAxisSize: MainAxisSize.min,
                 children: [
                   Container(
                     alignment: Alignment.topCenter,
@@ -35,12 +35,14 @@ class RandomizerView extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: 24.0),
-                  Expanded(
+                  Flexible(
+                    flex: 1,
+                    fit: FlexFit.tight,
                     child: Stack(
-                      fit: StackFit.expand,
+                      alignment: Alignment.center,
                       children: [
                         if (store.isLoading)
-                          Center(child: CircularProgressIndicator()),
+                          CircularProgressIndicator(),
                         ActivityAnimatedCard(activity: store.activity,
                             isLoading: store.isLoading, onLike: store.onLikeActivity,),
                       ],

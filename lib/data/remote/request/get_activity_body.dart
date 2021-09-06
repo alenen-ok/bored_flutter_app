@@ -19,7 +19,7 @@ class GetRandomActivityWithParamsBody {
       if (params.price != null) 'minprice': getMinPriceFromType(params.price!),
       if (params.price != null) 'maxprice': getMaxPriceFromType(params.price!),
       if (params.accessibility != null)
-        'minaccessibility': getMaxAccessibilityFromType(params.accessibility!),
+        'minaccessibility': getMinAccessibilityFromType(params.accessibility!),
       if (params.accessibility != null)
         'maxaccessibility': getMaxAccessibilityFromType(params.accessibility!),
     };

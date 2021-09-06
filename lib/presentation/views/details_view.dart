@@ -35,18 +35,23 @@ class ActivityDetailsView extends StatelessWidget {
                   height: 24.0,
                 ),
                 Expanded(
-                  child: Stack(
-                    fit: StackFit.expand,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      if (store.isLoading)
-                        Center(child: CircularProgressIndicator()),
-                      ActivityAnimatedCard(activity: store.activity,
-                          isLoading: store.isLoading, onLike: store.onLikeActivity,),
+                      Stack(
+                        alignment: Alignment.center,
+                        children: [
+                          if (store.isLoading)
+                            Center(child: CircularProgressIndicator()),
+                          ActivityAnimatedCard(activity: store.activity,
+                            isLoading: store.isLoading, onLike: store.onLikeActivity,),
+                        ],
+                      ),
                     ],
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(left: 24.0, right: 24.0, top: 24.0),
+                  padding: const EdgeInsets.all(24.0,),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [

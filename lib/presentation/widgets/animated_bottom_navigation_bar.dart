@@ -77,64 +77,70 @@ class _AnimatedTabBarState extends State<AnimatedTabBar>
     return Stack(
       alignment: Alignment.topCenter,
       children: <Widget>[
-        Container(
-          height: 56,
-          margin: EdgeInsets.only(top: 40),
-          decoration: BoxDecoration(color: Theme.of(context).primaryColor, boxShadow: [
-            BoxShadow(
-                color: Theme.of(context).shadowColor,
-                offset: Offset(0, -1), blurRadius: 8)
-          ]),
-          child: Row(
-            mainAxisSize: MainAxisSize.max,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              TabItem(
-                  selected: widget.currentIndex == 0,
-                  iconData: CustomIcons.random,
-                  title: "RANDOM",
-                  onTapCallback: () {
-                    widget.onTap.call(0);
-                    setState(() {
-                      nextIcon = CustomIcons.random;
-                    });
-                    _initAnimationAndStart(_positionAnimation.value, 4);
-                  }),
-              TabItem(
-                  selected: widget.currentIndex == 1,
-                  iconData: CustomIcons.categories,
-                  title: "SEARCH",
-                  onTapCallback: () {
-                    widget.onTap.call(1);
-                    setState(() {
-                      nextIcon = CustomIcons.categories;
-                    });
-                    _initAnimationAndStart(_positionAnimation.value, 3);
-                  }),
-              TabItem(
-                  selected: widget.currentIndex == 2,
-                  iconData: CustomIcons.favourite,
-                  title: "FAVOURITE",
-                  onTapCallback: () {
-                    widget.onTap.call(2);
-                    setState(() {
-                      nextIcon = CustomIcons.favourite;
-                    });
-                    _initAnimationAndStart(_positionAnimation.value, 2);
-                  }),
-              TabItem(
-                  selected: widget.currentIndex == 3,
-                  iconData: CustomIcons.settings,
-                  title: "SETTINGS",
-                  onTapCallback: () {
-                    widget.onTap.call(3);
-                    setState(() {
-                      nextIcon =  CustomIcons.settings;
-                    });
-                    _initAnimationAndStart(_positionAnimation.value, 1);
-                  })
-            ],
-          ),
+        Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(height: 40, width: double.infinity, color: Colors.transparent,),
+            Container(
+              height: 56,
+              //margin: EdgeInsets.only(top: 40),
+              decoration: BoxDecoration(color: Theme.of(context).primaryColor, boxShadow: [
+                BoxShadow(
+                    color: Theme.of(context).shadowColor,
+                    offset: Offset(0, -1), blurRadius: 8)
+              ]),
+              child: Row(
+                mainAxisSize: MainAxisSize.max,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  TabItem(
+                      selected: widget.currentIndex == 0,
+                      iconData: CustomIcons.random,
+                      title: "RANDOM",
+                      onTapCallback: () {
+                        widget.onTap.call(0);
+                        setState(() {
+                          nextIcon = CustomIcons.random;
+                        });
+                        _initAnimationAndStart(_positionAnimation.value, 4);
+                      }),
+                  TabItem(
+                      selected: widget.currentIndex == 1,
+                      iconData: CustomIcons.categories,
+                      title: "SEARCH",
+                      onTapCallback: () {
+                        widget.onTap.call(1);
+                        setState(() {
+                          nextIcon = CustomIcons.categories;
+                        });
+                        _initAnimationAndStart(_positionAnimation.value, 3);
+                      }),
+                  TabItem(
+                      selected: widget.currentIndex == 2,
+                      iconData: CustomIcons.favourite,
+                      title: "FAVOURITE",
+                      onTapCallback: () {
+                        widget.onTap.call(2);
+                        setState(() {
+                          nextIcon = CustomIcons.favourite;
+                        });
+                        _initAnimationAndStart(_positionAnimation.value, 2);
+                      }),
+                  TabItem(
+                      selected: widget.currentIndex == 3,
+                      iconData: CustomIcons.settings,
+                      title: "SETTINGS",
+                      onTapCallback: () {
+                        widget.onTap.call(3);
+                        setState(() {
+                          nextIcon =  CustomIcons.settings;
+                        });
+                        _initAnimationAndStart(_positionAnimation.value, 1);
+                      })
+                ],
+              ),
+            ),
+          ],
         ),
         IgnorePointer(
           child: Container(
