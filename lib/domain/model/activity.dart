@@ -1,5 +1,5 @@
 
-import 'package:bored_flutter_app/constant/enum.dart';
+import 'package:bored_flutter_app/core/constant/enum.dart';
 import 'package:bored_flutter_app/data/mapper/activity_mapper.dart';
 import 'package:flutter/material.dart';
 
@@ -24,10 +24,6 @@ class Activity {
   final double accessibility;
   bool isLiked;
 
-  void setIsLiked(bool isLiked) {
-    this.isLiked = isLiked;
-  }
-
   Color get activityTypeColor => activityLightColorFromType(this.activityType);
 
   Activity copyWith({bool? newIsLiked}) {
@@ -39,7 +35,7 @@ class Activity {
       price: price,
       link: link,
       key: key,
-      isLiked: newIsLiked ?? false
+      isLiked: newIsLiked ?? isLiked
     );
   }
 }

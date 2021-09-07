@@ -1,10 +1,12 @@
 
-import 'package:bored_flutter_app/constant/enum.dart';
+import 'package:bored_flutter_app/core/constant/enum.dart';
 import 'package:bored_flutter_app/domain/model/activity_params.dart';
 import 'package:bored_flutter_app/domain/model/activity.dart';
 import 'package:bored_flutter_app/domain/repository/repository.dart';
-import 'package:bored_flutter_app/domain/service/navigation_service.dart';
+import 'package:bored_flutter_app/core/services/navigation_service.dart';
+import 'package:bored_flutter_app/domain/state/activity_state.dart';
 import 'package:bored_flutter_app/internal/dependencies/locator.dart';
+import 'package:dio/dio.dart';
 import 'package:mobx/mobx.dart';
 
 part 'search_store.g.dart';
@@ -21,7 +23,7 @@ abstract class SearchStoreBase with Store {
   ActivityParameters params = ActivityParameters();
 
   @observable
-  Activity? activity;
+  ActivityState activityState = ActivityState.init();
 
   @observable
   bool isLoading = false;
@@ -43,24 +45,35 @@ abstract class SearchStoreBase with Store {
   }
 
   @action
-  Future<void> getRandomActivityByParams() async {
-    isLoading = true;
+  getRandomActivityByParams() async {
+    activityState = ActivityState.loading();
     await Future.delayed(const Duration(milliseconds: 600));
-    final data = await _activityRepository.getRandomActivityByParams(params);
-    activity = data;
-    isLoading = false;
+    try {
+      final data = await _activityRepository.getRandomActivityByParams(params);
+      activityState = ActivityState.loaded(data);
+
+    } on DioError {
+      activityState = ActivityState.error(ErrorType.no_internet_connection);
+    } catch (e) {
+      print(e.toString());
+      activityState = ActivityState.error(ErrorType.something_went_wrong);
+    }
   }
 
   @action
-  Future<void> onLikeActivity() async {
-    if (activity != null) {
-      if (activity!.isLiked) {
-        await _activityRepository.removeActivityFromLiked(activity!);
-      } else {
-        await _activityRepository.addActivityToLiked(activity!);
+  onLikeActivity() async {
+    if (activityState is ActivityStateLoaded) {
+      if ((activityState as ActivityStateLoaded).activity != null) {
+        final newActivity = (activityState as ActivityStateLoaded).activity!.copyWith();
+        if (newActivity.isLiked) {
+          await _activityRepository.removeActivityFromLiked(newActivity);
+        } else {
+          await _activityRepository.addActivityToLiked(newActivity);
+        }
+        newActivity.isLiked = !newActivity.isLiked;
+        activityState = ActivityState.loaded(newActivity);
       }
     }
-    activity = activity?.copyWith(newIsLiked: !(activity?.isLiked ?? false));
   }
 
   @action

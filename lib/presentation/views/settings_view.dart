@@ -1,7 +1,7 @@
 
-import 'package:bored_flutter_app/constant/color.dart';
-import 'package:bored_flutter_app/constant/custom_icons_icons.dart';
-import 'package:bored_flutter_app/constant/key.dart';
+import 'package:bored_flutter_app/core/constant/color.dart';
+import 'package:bored_flutter_app/core/constant/custom_icons_icons.dart';
+import 'package:bored_flutter_app/core/constant/key.dart';
 import 'package:bored_flutter_app/domain/store/settings/settings_store.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -16,7 +16,6 @@ class SettingsView extends StatelessWidget {
     return Observer(
       builder: (context) {
         return Padding(
-          key: Keys.settingsPageKey,
           padding: const EdgeInsets.symmetric(horizontal: 24.0),
           child: Column(
             children: [
@@ -38,7 +37,7 @@ class SettingsView extends StatelessWidget {
                     Text("Dark mode"),
                   ],
                 ),
-                value: store.useDarkMode!,
+                value: store.useDarkMode,
                 onChanged: (value) => store.setDarkMode(value),
                 activeColor: AppColors.purpleDark,
               )

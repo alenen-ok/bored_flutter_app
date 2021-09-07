@@ -1,7 +1,8 @@
 
-import 'package:bored_flutter_app/constant/key.dart';
+import 'package:bored_flutter_app/core/constant/key.dart';
+import 'package:bored_flutter_app/domain/state/activity_state.dart';
 import 'package:bored_flutter_app/domain/store/search/search_store.dart';
-import 'package:bored_flutter_app/presentation/widgets/activity_card.dart';
+import 'package:bored_flutter_app/presentation/widgets/activity/activity_card.dart';
 import 'package:bored_flutter_app/presentation/widgets/icon_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -18,11 +19,9 @@ class ActivityDetailsView extends StatelessWidget {
     return Observer(
         builder: (context) {
           return Padding(
-            key: Keys.activityDetailsPageKey,
             padding: const EdgeInsets.all(24.0,),
             child: Column(
               children: [
-
                 Container(
                   alignment: Alignment.topCenter,
                   child: Text(
@@ -34,18 +33,17 @@ class ActivityDetailsView extends StatelessWidget {
                 SizedBox(
                   height: 24.0,
                 ),
-                Expanded(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                Flexible(
+                  flex: 1,
+                  fit: FlexFit.tight,
+                  child: Stack(
+                    alignment: Alignment.center,
                     children: [
-                      Stack(
-                        alignment: Alignment.center,
-                        children: [
-                          if (store.isLoading)
-                            Center(child: CircularProgressIndicator()),
-                          ActivityAnimatedCard(activity: store.activity,
-                            isLoading: store.isLoading, onLike: store.onLikeActivity,),
-                        ],
+                      if (store.activityState is ActivityStateLoading)
+                        CircularProgressIndicator(),
+                      ActivityAnimatedCard(
+                        activityState: store.activityState,
+                        onLike: store.onLikeActivity,
                       ),
                     ],
                   ),

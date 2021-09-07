@@ -1,5 +1,5 @@
 
-import 'package:bored_flutter_app/constant/enum.dart';
+import 'package:bored_flutter_app/core/constant/enum.dart';
 
 class ActivityParameters {
   ActivityType? type;

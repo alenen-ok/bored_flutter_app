@@ -1,5 +1,5 @@
 
-import 'package:bored_flutter_app/constant/key.dart';
+import 'package:bored_flutter_app/core/constant/key.dart';
 import 'package:bored_flutter_app/domain/store/favourite/favourite_store.dart';
 import 'package:bored_flutter_app/presentation/widgets/liked_activity.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +19,6 @@ class FavouritesView extends StatelessWidget {
     return Observer(
       builder: (context) {
         return Column(
-          key: Keys.favouritesPageKey,
           mainAxisSize: MainAxisSize.min,
           children: [
             Container(

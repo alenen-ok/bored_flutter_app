@@ -1,8 +1,8 @@
+import 'package:bored_flutter_app/core/constant/color.dart';
+import 'package:bored_flutter_app/core/constant/custom_icons_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:vector_math/vector_math.dart' as vector;
 
-import 'package:bored_flutter_app/constant/color.dart';
-import 'package:bored_flutter_app/constant/custom_icons_icons.dart';
 import 'package:bored_flutter_app/presentation/widgets/tab_item.dart';
 
 

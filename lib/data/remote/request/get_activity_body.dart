@@ -1,6 +1,4 @@
 
-import 'package:bored_flutter_app/constant/enum.dart';
-import 'package:bored_flutter_app/data/mapper/activity_mapper.dart';
 import 'package:bored_flutter_app/data/mapper/params_mapper.dart';
 import 'package:bored_flutter_app/domain/model/activity_params.dart';
 

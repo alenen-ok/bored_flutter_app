@@ -1,6 +1,8 @@
-import 'package:bored_flutter_app/constant/key.dart';
+
+import 'package:bored_flutter_app/core/constant/key.dart';
+import 'package:bored_flutter_app/domain/state/activity_state.dart';
 import 'package:bored_flutter_app/domain/store/randomizer/randomizer_store.dart';
-import 'package:bored_flutter_app/presentation/widgets/activity_card.dart';
+import 'package:bored_flutter_app/presentation/widgets/activity/activity_card.dart';
 import 'package:bored_flutter_app/presentation/widgets/add_refresh_btn.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -17,7 +19,6 @@ class RandomizerView extends StatelessWidget {
     return Observer(
       builder: (context) {
         return Padding(
-          key: Keys.randomizerPageKey,
           padding: const EdgeInsets.symmetric(horizontal: 24.0),
           child: Stack(
             //fit: StackFit.expand,
@@ -41,10 +42,12 @@ class RandomizerView extends StatelessWidget {
                     child: Stack(
                       alignment: Alignment.center,
                       children: [
-                        if (store.isLoading)
+                        if (store.activityState is ActivityStateLoading)
                           CircularProgressIndicator(),
-                        ActivityAnimatedCard(activity: store.activity,
-                            isLoading: store.isLoading, onLike: store.onLikeActivity,),
+                        ActivityAnimatedCard(
+                          activityState: store.activityState,
+                          onLike: store.onLikeActivity,
+                        ),
                       ],
                     ),
                   ),
@@ -54,11 +57,12 @@ class RandomizerView extends StatelessWidget {
                 ],
               ),
               AnimatedAlign(
-                alignment: store.activity == null && !store.isLoading ? Alignment.center : Alignment(0, 1.08),
+                alignment: store.activityState is ActivityStateInit ? Alignment.center : Alignment(0, 1.08),
                 duration: Duration(milliseconds: 600),
                 child: AddRefreshButton(
-                  onTap: store.isLoading ? null : () => store.getRandomActivity(),
-                  isActivated: store.activity != null,
+                  onTap: store.activityState is ActivityStateLoading ? null
+                      : () => store.getRandomActivity(),
+                  isActivated: !(store.activityState is ActivityStateInit),
                 ),
               ),
             ],

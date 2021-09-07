@@ -1,6 +1,6 @@
 
-import 'package:bored_flutter_app/constant/style.dart';
-import 'package:bored_flutter_app/domain/service/navigation_service.dart';
+import 'package:bored_flutter_app/core/constant/style.dart';
+import 'package:bored_flutter_app/core/services/navigation_service.dart';
 import 'package:bored_flutter_app/domain/store/destination/destinations_store.dart';
 import 'package:bored_flutter_app/domain/store/favourite/favourite_store.dart';
 import 'package:bored_flutter_app/domain/store/randomizer/randomizer_store.dart';
@@ -8,6 +8,7 @@ import 'package:bored_flutter_app/domain/store/search/search_store.dart';
 import 'package:bored_flutter_app/domain/store/settings/settings_store.dart';
 import 'package:bored_flutter_app/presentation/screens/activity_details_screen.dart';
 import 'package:bored_flutter_app/presentation/screens/home_screen.dart';
+import 'package:bored_flutter_app/presentation/screens/welcome_screen.dart';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -46,9 +47,10 @@ class MyApp extends StatelessWidget {
             return MaterialApp(
               navigatorKey: injector<NavigationService>().navigationKey,
               debugShowCheckedModeBanner: false,
-              theme: setStore.useDarkMode! ? AppThemes.darkTheme : AppThemes.lightTheme,
-              home: HomeScreen(),
+              theme: setStore.useDarkMode ? AppThemes.darkTheme : AppThemes.lightTheme,
+              home: setStore.firstEntry ? WelcomeScreen() : HomeScreen(),
               routes: {
+                "welcome_screen": (BuildContext context) => WelcomeScreen(),
                 "home_screen": (BuildContext context) => HomeScreen(),
                 "activity_details_screen": (BuildContext context) => ActivityDetailsScreen(),
               },

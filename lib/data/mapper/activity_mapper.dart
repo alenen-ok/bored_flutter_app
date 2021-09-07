@@ -1,5 +1,6 @@
-import 'package:bored_flutter_app/constant/color.dart';
-import 'package:bored_flutter_app/constant/enum.dart';
+
+import 'package:bored_flutter_app/core/constant/color.dart';
+import 'package:bored_flutter_app/core/constant/enum.dart';
 import 'package:bored_flutter_app/data/local/entity/activity_entity.dart';
 import 'package:bored_flutter_app/data/mapper/params_mapper.dart';
 import 'package:bored_flutter_app/data/remote/model/activity_dto.dart';

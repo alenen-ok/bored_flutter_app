@@ -1,6 +1,5 @@
+import 'package:bored_flutter_app/core/constant/enum.dart';
 import 'package:mobx/mobx.dart';
-
-import 'package:bored_flutter_app/constant/enum.dart';
 
 part 'destinations_store.g.dart';
 

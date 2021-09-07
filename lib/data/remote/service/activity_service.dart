@@ -7,16 +7,22 @@ class ActivityService {
   ActivityService(this.dio);
   final Dio dio;
 
-  Future<ActivityDto> getRandomActivity() async {
+  Future<ActivityDto?> getRandomActivity() async {
     final response = await dio.get('/activity');
+    if (response.data['error'] != null) {
+      return null;
+    }
     return ActivityDto.fromApi(response.data);
   }
 
-  Future<ActivityDto> getRandomActivityByParams(GetRandomActivityWithParamsBody body) async {
+  Future<ActivityDto?> getRandomActivityByParams(GetRandomActivityWithParamsBody body) async {
     final response = await dio.get(
       '/activity',
       queryParameters: body.toApi(),
     );
+    if (response.data['error'] != null) {
+      return null;
+    }
     return ActivityDto.fromApi(response.data);
   }
 

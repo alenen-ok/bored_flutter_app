@@ -24,18 +24,18 @@ mixin _$SearchStore on SearchStoreBase, Store {
     });
   }
 
-  final _$activityAtom = Atom(name: 'SearchStoreBase.activity');
+  final _$activityStateAtom = Atom(name: 'SearchStoreBase.activityState');
 
   @override
-  Activity? get activity {
-    _$activityAtom.reportRead();
-    return super.activity;
+  ActivityState get activityState {
+    _$activityStateAtom.reportRead();
+    return super.activityState;
   }
 
   @override
-  set activity(Activity? value) {
-    _$activityAtom.reportWrite(value, super.activity, () {
-      super.activity = value;
+  set activityState(ActivityState value) {
+    _$activityStateAtom.reportWrite(value, super.activityState, () {
+      super.activityState = value;
     });
   }
 
@@ -58,7 +58,7 @@ mixin _$SearchStore on SearchStoreBase, Store {
       AsyncAction('SearchStoreBase.getRandomActivityByParams');
 
   @override
-  Future<void> getRandomActivityByParams() {
+  Future getRandomActivityByParams() {
     return _$getRandomActivityByParamsAsyncAction
         .run(() => super.getRandomActivityByParams());
   }
@@ -67,7 +67,7 @@ mixin _$SearchStore on SearchStoreBase, Store {
       AsyncAction('SearchStoreBase.onLikeActivity');
 
   @override
-  Future<void> onLikeActivity() {
+  Future onLikeActivity() {
     return _$onLikeActivityAsyncAction.run(() => super.onLikeActivity());
   }
 
@@ -100,7 +100,7 @@ mixin _$SearchStore on SearchStoreBase, Store {
   String toString() {
     return '''
 params: ${params},
-activity: ${activity},
+activityState: ${activityState},
 isLoading: ${isLoading}
     ''';
   }

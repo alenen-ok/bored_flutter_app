@@ -1,89 +1,47 @@
-import 'package:bored_flutter_app/constant/color.dart';
+
 import 'package:bored_flutter_app/data/mapper/params_mapper.dart';
 import 'package:bored_flutter_app/domain/model/activity.dart';
+import 'package:bored_flutter_app/domain/state/activity_state.dart';
 import 'package:bored_flutter_app/presentation/widgets/stars_indicator.dart';
 import 'package:flutter/material.dart';
 
+import 'activity_error_card.dart';
+import 'activity_not_found_card.dart';
+
 class ActivityAnimatedCard extends StatelessWidget {
   const ActivityAnimatedCard(
-      {this.activity, required this.isLoading, required this.onLike});
+      {required this.activityState, required this.onLike});
 
-  final Activity? activity;
-  final bool isLoading;
+  final ActivityState activityState;
   final VoidCallback onLike;
+
+  Widget _widget() {
+    switch(activityState.runtimeType) {
+      case ActivityStateLoading:
+        return SizedBox();
+      case ActivityStateLoaded:
+        final activity = (activityState as ActivityStateLoaded).activity;
+        if (activity != null) {
+          return ActivityCard(activity, onLike);
+        } else {
+          return ActivityNotFoundCard();
+        }
+      case ActivityStateError:
+        return ErrorActivityCard((activityState as ActivityStateError).errorMessage);
+      default:
+        return SizedBox();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return AnimatedSwitcher(
       duration: Duration(milliseconds: 600),
-      child: activity != null && !isLoading
-          ? activity!.activity.isNotEmpty
-              ? ActivityCard(activity!, onLike)
-              : ActivityNotFoundCard()
-          : SizedBox(),
+      child: _widget()
     );
   }
 }
 
-class ActivityNotFoundCard extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return IntrinsicHeight(
-      child: Container(
-        alignment: Alignment.center,
-        width: double.infinity,
-        margin: const EdgeInsets.symmetric(horizontal: 24.0),
-        padding: const EdgeInsets.all(24.0),
-        decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.primary.withOpacity(0.1),
-          borderRadius: BorderRadius.all(Radius.circular(24)),
-          boxShadow: [
-            BoxShadow(
-              color: Theme.of(context).colorScheme.primary.withOpacity(0.2),
-              blurRadius: 15,
-              offset: Offset(0, 0), // Shadow position
-            ),
-          ],
-        ),
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Image.asset(
-                  "assets/images/not_found.png",
-                  height: 120.0,
-                  color: Theme.of(context).primaryColorDark,
-                ),
-              ),
-              Text(
-                "SORRY...",
-                style: Theme.of(context).textTheme.bodyText1,
-              ),
-              SizedBox(
-                height: 16.0,
-              ),
-              Text(
-                "We could not find an activity that matches your parameters",
-                textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.subtitle2,
-              ),
-              SizedBox(
-                height: 16.0,
-              ),
-              Text(
-                "Please try changing your search parameters and try again",
-                textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.subtitle2,
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
 
 class ActivityCard extends StatelessWidget {
   const ActivityCard(this.activity, this.onLike);

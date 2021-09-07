@@ -10,14 +10,16 @@ class RemoteDataRepository {
 
   final ActivityService _activityService;
 
-  Future<Activity> getRandomActivity() async {
+  Future<Activity?> getRandomActivity() async {
     final response = await _activityService.getRandomActivity();
+    if (response == null) return null;
     return response.toModel();
   }
 
-  Future<Activity> getRandomActivityByParams(ActivityParameters parameters) async {
+  Future<Activity?> getRandomActivityByParams(ActivityParameters parameters) async {
     final body = GetRandomActivityWithParamsBody(parameters);
     final response = await _activityService.getRandomActivityByParams(body);
+    if (response == null) return null;
     return response.toModel();
   }
 }

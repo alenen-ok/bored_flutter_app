@@ -1,4 +1,6 @@
 
+import 'package:bored_flutter_app/core/constant/enum.dart';
+import 'package:bored_flutter_app/core/constant/key.dart';
 import 'package:bored_flutter_app/domain/store/favourite/favourite_store.dart';
 import 'package:bored_flutter_app/domain/store/randomizer/randomizer_store.dart';
 import 'package:bored_flutter_app/domain/store/search/search_store.dart';
@@ -10,8 +12,6 @@ import 'package:bored_flutter_app/presentation/views/settings_view.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:bored_flutter_app/constant/enum.dart';
-import 'package:bored_flutter_app/constant/key.dart';
 import 'package:bored_flutter_app/domain/store/settings/settings_store.dart';
 
 class PageContainer extends StatelessWidget {

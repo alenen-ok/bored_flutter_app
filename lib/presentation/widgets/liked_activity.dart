@@ -1,4 +1,5 @@
-import 'package:bored_flutter_app/constant/color.dart';
+
+import 'package:bored_flutter_app/core/constant/color.dart';
 import 'package:bored_flutter_app/data/mapper/params_mapper.dart';
 import 'package:bored_flutter_app/domain/model/activity.dart';
 import 'package:flutter/material.dart';

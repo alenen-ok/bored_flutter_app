@@ -1,6 +1,6 @@
 
-import 'package:bored_flutter_app/constant/enum.dart';
-import 'package:bored_flutter_app/constant/key.dart';
+import 'package:bored_flutter_app/core/constant/enum.dart';
+import 'package:bored_flutter_app/core/constant/key.dart';
 import 'package:bored_flutter_app/data/mapper/params_mapper.dart';
 import 'package:bored_flutter_app/domain/store/search/search_store.dart';
 import 'package:bored_flutter_app/presentation/widgets/dropdown_list.dart';
@@ -19,7 +19,6 @@ class SearchView extends StatelessWidget {
     return Observer(
       builder: (context) {
         return Padding(
-          key: Keys.searchPageKey,
           padding: const EdgeInsets.symmetric(horizontal: 24.0),
           child: SingleChildScrollView(
             child: Column(

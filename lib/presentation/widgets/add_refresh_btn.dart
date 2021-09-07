@@ -1,6 +1,6 @@
 
 
-import 'package:bored_flutter_app/constant/color.dart';
+import 'package:bored_flutter_app/core/constant/color.dart';
 import 'package:flutter/material.dart';
 
 import 'empty_random_screen_hint.dart';

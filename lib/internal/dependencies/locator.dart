@@ -1,5 +1,5 @@
 
-import 'package:bored_flutter_app/constant/const.dart';
+import 'package:bored_flutter_app/core/constant/const.dart';
 import 'package:bored_flutter_app/data/local/dbconfig.dart';
 import 'package:bored_flutter_app/data/local/service/activity_local_data_service.dart';
 import 'package:bored_flutter_app/data/remote/service/activity_service.dart';
@@ -8,7 +8,7 @@ import 'package:bored_flutter_app/data/repository/local_data_repository.dart';
 import 'package:bored_flutter_app/data/repository/prefs_data_repository.dart';
 import 'package:bored_flutter_app/data/repository/remote_data_repository.dart';
 import 'package:bored_flutter_app/domain/repository/repository.dart';
-import 'package:bored_flutter_app/domain/service/navigation_service.dart';
+import 'package:bored_flutter_app/core/services/navigation_service.dart';
 import 'package:bored_flutter_app/domain/store/destination/destinations_store.dart';
 import 'package:bored_flutter_app/domain/store/favourite/favourite_store.dart';
 import 'package:bored_flutter_app/domain/store/randomizer/randomizer_store.dart';

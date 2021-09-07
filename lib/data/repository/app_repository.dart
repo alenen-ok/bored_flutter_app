@@ -18,18 +18,22 @@ class AppRepository implements Repository {
   final LocalDataRepository localDataRepository;
 
   @override
-  Future<Activity> getRandomActivity() async {
+  Future<Activity?> getRandomActivity() async {
     final activity = await remoteDataRepository.getRandomActivity();
-    final isLiked = await localDataRepository.hasActivityByKey(activity.key);
-    activity.setIsLiked(isLiked);
+    if (activity != null) {
+      final isLiked = await localDataRepository.hasActivityByKey(activity.key);
+      activity.isLiked = isLiked;
+    }
     return activity;
   }
 
   @override
-  Future<Activity> getRandomActivityByParams(ActivityParameters parameters) async {
+  Future<Activity?> getRandomActivityByParams(ActivityParameters parameters) async {
     final activity =  await remoteDataRepository.getRandomActivityByParams(parameters);
-    final isLiked = await localDataRepository.hasActivityByKey(activity.key);
-    activity.setIsLiked(isLiked);
+    if (activity != null) {
+      final isLiked = await localDataRepository.hasActivityByKey(activity.key);
+      activity.isLiked = isLiked;
+    }
     return activity;
   }
 
@@ -61,6 +65,16 @@ class AppRepository implements Repository {
   @override
   Future<Activity> refreshActivity(Activity activity) {
     return localDataRepository.refreshActivity(activity);
+  }
+
+  @override
+  bool isFirstEntry() {
+    return prefsDataRepository.isFirstEntry();
+  }
+
+  @override
+  setFirstEntry(bool firstEntry) {
+    prefsDataRepository.setFirstEntry(firstEntry);
   }
 
 }
